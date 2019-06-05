@@ -1,0 +1,18 @@
+{
+  "name": "common_code_lambda_layer",
+  "version": "1.0.0",
+  "description": "Common code lambda layer",
+  "main": "app.js",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.459.0"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}

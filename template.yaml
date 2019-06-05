@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS Serverless Application - Foundational / Boilerplate Code
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 5 # seconds
+    Runtime: nodejs8.10
+
+Resources:
+  # Create Lambda Layer containing common code used across all other lambdas
+  CreateCommonCodeLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: CommonCodeLayer
+      Description: Contains all common code used by other lambda functions
+      ContentUri: common-code-layer/
+      CompatibleRuntimes:
+        - nodejs8.10
+        - nodejs10.x
+      LicenseInfo: 'Not Applicable'
+      RetentionPolicy: Retain # retain previous layer versions
+  
+  # Sample Lambda Function Definition - which has api endpoint and sample code to interact with different AWS services
+  # Replace or copy this function template to create similar other lambda functions
+  SampleLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: sample-lambda-function/
+      Handler: app.lambdaHandler
+      Runtime: nodejs10.x
+      Policies:
+        - AmazonSESFullAccess # allow FULL SES Access using AWS Managed Policy
+        - AmazonSNSFullAccess # allow FULL SNS Access using AWS Managed Policy
+        - DynamoDBCrudPolicy: # allow CRUD access to DynamoDB Table created by resource 'CreateSampleDDBTable'
+            TableName: !Ref CreateSampleDDBTable
+      Layers:
+        - !Ref CreateCommonCodeLambdaLayer # instruct to use 'CreateCommonCodeLambdaLayer' Lambda Layer
+      Events:
+        SampleAPIEvent:
+          Type: Api
+          Properties:
+            Path: /sample-rest-resource-name
+            Method: post
+  
+  # Sample Create DDB table definition - which creates "SampleUsersTable" with 5 RCU and WCU each
+  # Replace or copy this template to create similar other DynamoDB Tables
+  CreateSampleDDBTable:
+      Type: AWS::Serverless::SimpleTable
+      Properties:
+        TableName: SampleUsersTable
+        PrimaryKey:
+          Name: Email # Replace this with Your Partition Key Attribute
+          Type: String
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
