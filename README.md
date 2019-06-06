@@ -1,10 +1,10 @@
 # aws-serverless-sam-boilerplate
 Foundational / Boilerplate code for AWS based Serverless project which primarily use Lambda, API Gateway, DynamoDB and SAM
-# Watch This Code: Work In Progress...
-# Overview
+## Watch This Code: Work In Progress...
+## Overview
   This project provides foundational / boilerplate code to quick start an AWS based Serverless project which primarly use AWS SAM, Lambda, Lambda Layer, API Gateway, DynamoDB, SES, SNS etc.
-# Project Structure
-  ## common-code-layer 
+## Project Structure
+  ### common-code-layer 
   Lambda Layer containing common code
   - **Node Modules**
     - Has 'aws-sdk' node module mainly
@@ -25,17 +25,17 @@ Foundational / Boilerplate code for AWS based Serverless project which primarily
       - Core functinalities to perofrm different input data validations
     - *configs.json*
       - App specific configurations
-## sample-lambda-function 
+### sample-lambda-function 
   Sample Lambda function which demonstrated creating new user into DynamoDB table and using different common utils from Lambda Layer)
   - app.js
     - Lambda handler file which processes lambda 'event' and returns 'success' or 'error' API response
     - Uses 'users.js' module to perform 'add new user into DDB table operation'
     - Validates required API request parameters
-# Prerquisites
+## Prerquisites
 - [Install AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 - [Export AWS_PROFILE environment variable](https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/credentials.html)
 - This document asssumes good knowledge and hands on with AWS Console, AWS CLI and AWS SDK. It does not provide step by step, micro level details
-# How to use?
+## How to use?
 - Git clone the project repository.
 - Open 'Terminal' or 'Shell'
 - CD to clonned project directory
@@ -53,7 +53,7 @@ Foundational / Boilerplate code for AWS based Serverless project which primarily
   - If it runs successfully then it creates and deploys 'Lambda', 'API Gateway API' and 'DynamoDB' table resources
 - Test
   - Go to AWS API Gateway Console and navigate to API created by this stack. Find API endpoint for 'users' resource and test using either curl or POSTMAN collection
-# Extend By Adding Your Lambda Functions And Other AWS Resources
+## Extend By Adding Your Lambda Functions And Other AWS Resources
   This project gives foundational structure and code to quick start your serverless application. As per your application need, add more Lambda, APIs, DynamoDB tables or add new AWS resources like AWS SES, SNS etc.
-# Help To Improve
+## Help To Improve
   Please help to improve by creating bug / issue / improvment / features
