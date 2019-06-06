@@ -34,7 +34,7 @@ Foundational / boilerplate code to quick start AWS based Serverless project
 ## Prerquisites
 - [Install AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 - [Export AWS_PROFILE environment variable](https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/credentials.html)
-- This document asssumes good knowledge and hands on with AWS Console, AWS CLI, AWS SMA CLI and AWS SDK. It does not provide step by step, micro level details
+- This document asssumes good knowledge and hands on with AWS Console, AWS CLI, AWS SAM CLI and AWS SDK. It does not provide step by step, micro level details
 ## How to use?
 - Git clone the project repository.
 - Open 'Terminal' or 'Shell'
