@@ -26,11 +26,11 @@ Foundational / boilerplate code to quick start AWS based Serverless project
     - *configs.json*
       - App specific configurations
 ### sample-lambda-function 
-  Sample Lambda function which demonstrated creating new user into DynamoDB table and using different common utils from Lambda Layer)
+  Sample Lambda function to demonstrate creating new user into DynamoDB table by using different common utils from Lambda Layer
   - app.js
     - Lambda handler file which processes lambda 'event' and returns 'success' or 'error' API response
-    - Uses 'users.js' module to perform 'add new user into DDB table operation'
-    - Validates required API request parameters
+    - Demonstrates use of 'users.js' module to perform 'add new user into DDB table operation'
+    - Validates required API request parameters using 'validation-util.js'
 ## Prerquisites
 - [Install AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 - [Export AWS_PROFILE environment variable](https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/credentials.html)
@@ -38,21 +38,21 @@ Foundational / boilerplate code to quick start AWS based Serverless project
 ## How to use?
 - Git clone the project repository.
 - Open 'Terminal' or 'Shell'
-- CD to clonned project directory
+- CD to clonned project directory e.g. root of 'aws-serverless-sam-boilerplate' directory
 - Make sure you have SAM CLI installed and AWS_PROFILE set properly
 - Open "configs.json" file and modify "aws_region" variable if required. By default it uses "us-west-2" AWS region
-- Make sure you are in the same directory where 'template.uaml' exist
+- Make sure you are in the same directory where 'template.yaml' exist
 - SAM packaging and deployment requires S3 bucket to upload the package. You can use any existing S3 bucket or create new one e.g. aws s3 mb my.sls.sample.project
 - Run 'sam package' command
-  - - First, replace 'my.sls.sample.project' with the S3 bucket you wish to use
-  - sam package --output-template-file packaged.yaml --s3-bucket my.sls.sample.project
+  - First, replace 'my.sls.sample.project' with the S3 bucket you wish to use in following command before executing it
+  - `sam package --output-template-file packaged.yaml --s3-bucket my.sls.sample.project`
   - Make sure it runs successfully and creates 'packaged.yaml' file
 - Run 'sam deploy' command
-  - First, replace 'my-sls-lambda' with the stack-name you wish to give
-  - sam deploy --template-file packaged.yaml --stack-name my-sls-lambda --capabilities CAPABILITY_IAM 
+  - First, replace 'my-sls-lambda' with the stack-name you wish to give in following command before executing it
+  - `sam deploy --template-file packaged.yaml --stack-name my-sls-lambda --capabilities CAPABILITY_IAM` 
   - If it runs successfully then it creates and deploys 'Lambda', 'API Gateway API' and 'DynamoDB' table resources
 - Test
-  - Go to AWS API Gateway Console and navigate to API created by this stack. Find API endpoint for 'users' resource and test using either curl or POSTMAN collection
+  - Go to AWS API Gateway Console and navigate to API created by this stack. Find API endpoint for 'users' resource and test using either curl or [POSTMAN](https://www.getpostman.com/) tool
 ## Extend By Adding Your Lambda Functions And Other AWS Resources
   This project gives foundational structure and code to quick start your serverless application. As per your application need, add more Lambda, APIs, DynamoDB tables or add new AWS resources like AWS SES, SNS etc.
 ## Help To Improve
