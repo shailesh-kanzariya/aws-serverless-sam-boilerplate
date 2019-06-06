@@ -2,10 +2,10 @@
 Foundational / Boilerplate code for AWS based Serverless project which primarily use Lambda, API Gateway, DynamoDB and SAM
 # Watch This Code: Work In Progress...
 # Overview
-    This project provides foundational / boilerplate code to quick start an AWS based Serverless project which primarly use AWS SAM, Lambda, Lambda Layer, API Gateway, DynamoDB, SES, SNS etc.
+  This project provides foundational / boilerplate code to quick start an AWS based Serverless project which primarly use AWS SAM, Lambda, Lambda Layer, API Gateway, DynamoDB, SES, SNS etc.
 # Project Structure
   ## common-code-layer 
-    Lambda Layer containing common code
+  Lambda Layer containing common code
   - **Node Modules**
     - Has 'aws-sdk' node module mainly
   - **Custom Modules**
@@ -26,7 +26,7 @@ Foundational / Boilerplate code for AWS based Serverless project which primarily
     - *configs.json*
       - App specific configurations
 ## sample-lambda-function 
-    Sample Lambda function which demonstrated creating new user into DynamoDB table and using different common utils from Lambda Layer)
+  Sample Lambda function which demonstrated creating new user into DynamoDB table and using different common utils from Lambda Layer)
   - app.js
     - Lambda handler file which processes lambda 'event' and returns 'success' or 'error' API response
     - Uses 'users.js' module to perform 'add new user into DDB table operation'
@@ -54,6 +54,6 @@ Foundational / Boilerplate code for AWS based Serverless project which primarily
 - Test
   - Go to AWS API Gateway Console and navigate to API created by this stack. Find API endpoint for 'users' resource and test using either curl or POSTMAN collection
 # Extend By Adding Your Lambda Functions And Other AWS Resources
-    This project gives foundational structure and code to quick start your serverless application. As per your application need, add more Lambda, APIs, DynamoDB tables or add new AWS resources like AWS SES, SNS etc.
+  This project gives foundational structure and code to quick start your serverless application. As per your application need, add more Lambda, APIs, DynamoDB tables or add new AWS resources like AWS SES, SNS etc.
 # Help To Improve
-    Please help to improve by creating bug / issue / improvment / features
+  Please help to improve by creating bug / issue / improvment / features
