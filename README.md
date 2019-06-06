@@ -1,5 +1,5 @@
 # aws-serverless-sam-boilerplate
-Foundational / Boilerplate code for AWS based Serverless project which primarily use Lambda, API Gateway, DynamoDB and SAM
+Foundational / boilerplate code to quick start AWS based Serverless project
 ## Watch This Code: Work In Progress...
 ## Overview
   This project provides foundational / boilerplate code to quick start an AWS based Serverless project which primarly use AWS SAM, Lambda, Lambda Layer, API Gateway, DynamoDB, SES, SNS etc.
