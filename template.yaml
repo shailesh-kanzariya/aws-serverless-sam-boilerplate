@@ -10,7 +10,7 @@ Globals:
     Runtime: nodejs8.10
 
 Resources:
-  # Create Lambda Layer containing common code used across all other lambdas
+  # Create Lambda Layer containing common code which is used across all other lambdas
   CreateCommonCodeLambdaLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
@@ -20,10 +20,10 @@ Resources:
       CompatibleRuntimes:
         - nodejs8.10
         - nodejs10.x
-      LicenseInfo: 'Not Applicable'
+      LicenseInfo: 'MIT'
       RetentionPolicy: Retain # retain previous layer versions
   
-  # Sample Lambda Function Definition - which has api endpoint and sample code to interact with different AWS services
+  # Sample Lambda Function Definition - which has api endpoint 'users', supports 'post' method which performs DDB add/create user operation
   # Replace or copy this function template to create similar other lambda functions
   SampleLambdaFunction:
     Type: AWS::Serverless::Function
@@ -32,8 +32,8 @@ Resources:
       Handler: app.lambdaHandler
       Runtime: nodejs10.x
       Policies:
-        - AmazonSESFullAccess # allow FULL SES Access using AWS Managed Policy
-        - AmazonSNSFullAccess # allow FULL SNS Access using AWS Managed Policy
+        # - AmazonSESFullAccess # allow FULL SES Access using AWS Managed Policy
+        # - AmazonSNSFullAccess # allow FULL SNS Access using AWS Managed Policy
         - DynamoDBCrudPolicy: # allow CRUD access to DynamoDB Table created by resource 'CreateSampleDDBTable'
             TableName: !Ref CreateSampleDDBTable
       Layers:
@@ -42,7 +42,7 @@ Resources:
         SampleAPIEvent:
           Type: Api
           Properties:
-            Path: /sample-rest-resource-name
+            Path: /users  # sample-rest-resource-name
             Method: post
   
   # Sample Create DDB table definition - which creates "SampleUsersTable" with 5 RCU and WCU each

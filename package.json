@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/shailesh-kanzariya/aws-serverless-sam-boilerplate.git"
   },
-  "author": "",
-  "license": "",
+  "author": "Shailesh Kanzariya",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/shailesh-kanzariya/aws-serverless-sam-boilerplate/issues"
   },

@@ -24,37 +24,17 @@ const responseJSON = {
   Follow "Error First" approach of Node.js. If an error then return error first. If there is no error then only return "result"
   Both "result" and "error" JSON keys NEVER exist together in response json.
 
-  Success Response JSON Sample:
-    { "result": "success / custom success message / json data" }
   Error Response JSON Sample:
-    { "error": "error message", "info": "more details about error" }
+    { "error": "Bad Request", "info": "Missing required request parameters: 'email', 'firstname' " } Or
+    { "error": "Internal Server Error", "info": "Data invalid" }
 */
-async function getAPIResponse(resStatusCode, errorObj, infoStr, resBodyDataJSON) { // error, info and resBodyDataJSON are optional, if provided will overwrite default
-  const funcName = 'getAPIResponse: ';
+async function getErrorAPIResponse(resStatusCode, errorObj, infoStr) { // error, info are optional, if provided will overwrite default
+  const funcName = 'getErrorAPIResponse: ';
   try {
     // validate input params
     await validationUtil.validateStringTypeParamList([String(resStatusCode)]); // resStatusCode must exist
-    if (resBodyDataJSON) {
-      console.log(`${funcName}resBodyDataJSON = ${JSON.stringify(resBodyDataJSON)}`);
-    }
     // prepare response as per resStatusCode
     switch (resStatusCode) {
-      // OK
-      case 200: {
-        console.log(`${funcName}case:200`);
-        const apiResJson = responseJSON[resStatusCode];
-        console.log(`${funcName}apiResJson = ${JSON.stringify(apiResJson)}`);
-        // add body
-        const resultJSON = {};
-        if (resBodyDataJSON) { // if resBodyDataJSON exist then add it in body
-          resultJSON.result = resBodyDataJSON;
-        } else { // else add default message string in body
-          resultJSON.result = 'success';
-        }
-        apiResJson.body = JSON.stringify(resultJSON);
-        console.log(`${funcName}apiResJson = ${JSON.stringify(apiResJson)}`);
-        return apiResJson;
-      }
       // Bad Request
       case 400: {
         console.log(`${funcName}case:400`);
@@ -103,4 +83,47 @@ async function getAPIResponse(resStatusCode, errorObj, infoStr, resBodyDataJSON)
   }
 }
 
-module.exports = { getAPIResponse };
+/*
+  Follow "Error First" approach of Node.js. If an error then return error first. If there is no error then only return "result"
+  Both "result" and "error" JSON keys NEVER exist together in response json.
+
+  Success Response JSON Sample:
+    { "result": "success" } or
+    { "result": "User created successfully" } or
+    { "result": [ { "email": "john.doe@acme.com", "firstname": "John", "lastname": "Doe" } ] }
+*/
+async function getSuccessAPIResponse(resStatusCode, resultData) { // resultData is optional, if provided will overwrite default
+  const funcName = 'getSuccessAPIResponse: ';
+  try {
+    // validate input params
+    await validationUtil.validateStringTypeParamList([String(resStatusCode)]); // resStatusCode must exist
+    if (resultData) {
+      console.log(`${funcName}resultData = ${resultData}`);
+    }
+    // prepare response as per resStatusCode
+    switch (resStatusCode) {
+      // OK
+      default:
+      case 200: {
+        console.log(`${funcName}case:200`);
+        const apiResJson = responseJSON[resStatusCode];
+        console.log(`${funcName}apiResJson = ${JSON.stringify(apiResJson)}`);
+        // add response result body
+        const resResultJSON = {};
+        if (resultData) { // if resultData exist then add it in body
+          resResultJSON.result = resultData;
+        } else { // else add default message string in body
+          resResultJSON.result = 'success';
+        }
+        apiResJson.body = JSON.stringify(resResultJSON);
+        console.log(`${funcName}apiResJson = ${JSON.stringify(apiResJson)}`);
+        return apiResJson;
+      }
+    } // switch
+  } catch (error) {
+    console.log(`${funcName}error = ${error}`);
+    throw (error);
+  }
+}
+
+module.exports = { getSuccessAPIResponse, getErrorAPIResponse };
