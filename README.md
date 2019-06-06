@@ -56,4 +56,4 @@ Foundational / Boilerplate code for AWS based Serverless project which primarily
 ## Extend By Adding Your Lambda Functions And Other AWS Resources
   This project gives foundational structure and code to quick start your serverless application. As per your application need, add more Lambda, APIs, DynamoDB tables or add new AWS resources like AWS SES, SNS etc.
 ## Help To Improve
-  Please help to improve by creating bug / issue / improvment / features
+  Please help to improve by reporting bug / issue / improvment / features
