@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS Serverless Application - Foundational / Boilerplate Code
+
+  '
+Globals:
+  Function:
+    Runtime: nodejs8.10
+    Timeout: 5
+Resources:
+  CreateCommonCodeLambdaLayer:
+    Properties:
+      CompatibleRuntimes:
+      - nodejs8.10
+      - nodejs10.x
+      ContentUri: s3://medicibank.openapi.sls.package/7c57c8685d1bd62585df208f1d314564
+      Description: Contains all common code used by other lambda functions
+      LayerName: CommonCodeLayer
+      LicenseInfo: MIT
+      RetentionPolicy: Retain
+    Type: AWS::Serverless::LayerVersion
+  SampleLambdaFunction:
+    Properties:
+      CodeUri: s3://medicibank.openapi.sls.package/ba7be78f618fd90e4b3dbb6835b864e3
+      Events:
+        SampleAPIEvent:
+          Properties:
+            Method: post
+            Path: /users
+          Type: Api
+      Handler: app.lambdaHandler
+      Layers:
+      - Ref: CreateCommonCodeLambdaLayer
+      Runtime: nodejs10.x
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

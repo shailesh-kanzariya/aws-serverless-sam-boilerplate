@@ -31,11 +31,11 @@ Resources:
       CodeUri: sample-lambda-function/
       Handler: app.lambdaHandler
       Runtime: nodejs10.x
-      Policies:
+      # Policies:
         # - AmazonSESFullAccess # allow FULL SES Access using AWS Managed Policy
         # - AmazonSNSFullAccess # allow FULL SNS Access using AWS Managed Policy
-        - DynamoDBCrudPolicy: # allow CRUD access to DynamoDB Table created by resource 'CreateSampleDDBTable'
-            TableName: !Ref CreateSampleDDBTable
+        # - DynamoDBCrudPolicy: # allow CRUD access to DynamoDB Table created by resource 'CreateSampleDDBTable'
+        #     TableName: !Ref CreateSampleDDBTable
       Layers:
         - !Ref CreateCommonCodeLambdaLayer # instruct to use 'CreateCommonCodeLambdaLayer' Lambda Layer
       Events:
@@ -47,13 +47,13 @@ Resources:
   
   # Sample Create DDB table definition - which creates "SampleUsersTable" with 5 RCU and WCU each
   # Replace or copy this template to create similar other DynamoDB Tables
-  CreateSampleDDBTable:
-      Type: AWS::Serverless::SimpleTable
-      Properties:
-        TableName: SampleUsersTable
-        PrimaryKey:
-          Name: Email # Replace this with Your Partition Key Attribute
-          Type: String
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
+  # CreateSampleDDBTable:
+  #     Type: AWS::Serverless::SimpleTable
+  #     Properties:
+  #       TableName: SampleUsersTable
+  #       PrimaryKey:
+  #         Name: Email # Replace this with Your Partition Key Attribute
+  #         Type: String
+  #       ProvisionedThroughput:
+  #         ReadCapacityUnits: 5
+  #         WriteCapacityUnits: 5
